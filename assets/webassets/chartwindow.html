@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Top Amount Chart</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+  </head>
+  <body style="height: 100%;">
+    <div style="height: 100%;background-color: rgb(236, 236, 236);">
+      <div class="container"><canvas id="myChart"></canvas></div>
+    </div>
+
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+    <script src="../chartjs/chart.min.js"></script>
+    <script src="../firebase/firebase.min.js"></script>
+    <script src="./js/chartwindow.js"></script>
+    <script>
+      if (window.module) module = window.module;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Add New Entry</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/newentry.css" />
+  </head>
+  <body>
+    <div class="background">
+      <div class="container" id="form">
+        <div class="row">
+          <div class="col">
+            <form class="form-group">
+              <input
+                type="text"
+                autofocus
+                class="form-control name"
+                placeholder="Name"
+              />
+            </form>
+          </div>
+          <div class="col">
+            <form class="form-group">
+              <input
+                type="text"
+                class="form-control address"
+                placeholder="Address"
+              />
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <form class="form-group">
+              <input
+                type="number"
+                class="form-control interest"
+                placeholder="Interest"
+              />
+            </form>
+          </div>
+          <div class="col">
+            <form class="form-group">
+              <input
+                type="number"
+                class="form-control phoneno"
+                placeholder="Phone No."
+              />
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <form class="form-group">
+              <input
+                type="number"
+                class="form-control amount"
+                placeholder="Amount Given"
+              />
+            </form>
+          </div>
+          <div class="col">
+            <form class="form-group">
+              <input
+                type="number"
+                class="form-control timegiven"
+                placeholder="Time Given (In Months)"
+              />
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <form class="form-group">
+              <input
+                id="currentdate"
+                type="text"
+                class="form-control"
+                placeholder="Date"
+                disabled
+              />
+            </form>
+          </div>
+        </div>
+        <button class="btn btn-success" type="submit" onclick="submitData()">
+          Add New Entry
+        </button>
+        <button class="btn btn-danger btnclear" onclick="clearEntry()">
+          Clear Entry
+        </button>
+      </div>
+    </div>
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+    <script src="./js/newentry.js"></script>
+    <script>
+      if (window.module) module = window.module;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>People Giving Money Late</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/latemoney.css" />
+  </head>
+  <body>
+    <div class="background">
+      <div class="container-fluid">
+        <div class="out-container" id="yourTableIdName">
+          <table
+            class="table table-bordered table-hover cell-border table-sm compact"
+            id="myTable"
+          >
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Serial no.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone no.</th>
+                <th scope="col">Date of Submission</th>
+                <th scope="col">Interest</th>
+                <th scope="col">Time Given</th>
+                <th scope="col">Amount Given</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <h1 id="hideafterclick" class="text-center">
+          Double Click To Show Extra Details.
+        </h1>
+        <div id="showafterclick" class="details">Fill It.</div>
+        <div class="buttons">
+          <button
+            class="btn btn-success"
+            id="exportpdf"
+            value="Download PDF"
+          >
+            Save as PDF
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+    <script src="../jsPdf/jsPdf.min.js"></script>
+    <script src="../bootstrap/js/jquery.min.js"></script>
+    <script src="../bootstrap/js/popper.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/jquery.dataTables.min.js"></script>
+    <script src="./js/dataTables.bootstrap4.min.js"></script>
+    <script src="../firebase/firebase.min.js"></script>
+    <script src="./js/latemoney.js"></script>
+    <script type="text/javascript">
+      var currentdate = new Date();
+      $(document).ready(function() {
+        $("#exportpdf").click(function() {
+          var pdf = new jsPDF("l", "pt", "ledger");
+          pdf.setFont("helvetica");
+          pdf.setFontSize(18);
+          source = $("#yourTableIdName")[0];
+          specialElementHandlers = {
+            "#bypassme": function(element, renderer) {
+              return true;
+            }
+          };
+          margins = {
+            top: 80,
+            bottom: 60,
+            left: 60,
+            width: 522
+          };
+          pdf.fromHTML(
+            source,
+            margins.left,
+            margins.top,
+            {
+              width: margins.width,
+              elementHandlers: specialElementHandlers
+            },
+
+            function(dispose) {
+              pdf.save(
+                `LateMoney People ${currentdate.getDate()}-${currentdate.getMonth()}-${currentdate.getFullYear()}.pdf`
+              );
+            },
+            margins
+          );
+        });
+      });
+    </script>
+    <script>
+      if (window.module) module = window.module;
+    </script>
+  </body>
+</html>

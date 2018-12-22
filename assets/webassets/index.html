@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lone</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    />
+  </head>
+  <body>
+    <div class="background">
+      <div class="container">
+        <div class="out-container">
+          <table
+            class="table table-bordered table-hover cell-border table-sm compact"
+            id="myTable"
+          >
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Serial no.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone no.</th>
+                <th scope="col">Date of Submission</th>
+                <th scope="col">Interest</th>
+                <th scope="col">Time Given</th>
+                <th scope="col">Amount Given</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+      }
+    </script>
+    <script src="../bootstrap/js/jquery.min.js"></script>
+    <script src="../bootstrap/js/popper.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/jquery.dataTables.min.js"></script>
+    <script src="./js/dataTables.bootstrap4.min.js"></script>
+    <script src="../firebase/firebase.min.js"></script>
+    <script src="./js/index.js"></script>
+    <script>
+      if (window.module) module = window.module;
+    </script>
+  </body>
+</html>

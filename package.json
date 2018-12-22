@@ -1,0 +1,59 @@
+{
+  "name": "lone",
+  "version": "5.0.2",
+  "description": "Loan Management App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "installer": "build -p always"
+  },
+  "build": {
+    "appId": "com.saverl.lone",
+    "productName": "Lone",
+    "copyright": "Copyright © year 2019 ${author}",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "./assets/icons/win/logo.ico"
+    },
+    "nsis": {
+      "installerIcon": "./assets/icons/win/logo.ico",
+      "uninstallerIcon": "./assets/icons/win/logo.ico",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "uninstallDisplayName": "${productName} ${version}",
+      "packElevateHelper": true,
+      "unicode": true,
+      "license": "./assets/license.txt"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "saurabhguptarock",
+        "repo": "lone"
+      }
+    ]
+  },
+  "keywords": [
+    "loan app",
+    "loan management",
+    "Lone",
+    "windows",
+    "app",
+    "desktopapp"
+  ],
+  "author": "Saverl Inc.",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^3.0.12",
+    "electron-builder": "^20.38.3"
+  },
+  "dependencies": {
+    "electron-is-dev": "^1.0.1",
+    "electron-log": "^2.2.17",
+    "electron-updater": "^4.0.6",
+    "sweetalert": "^2.1.2"
+  }
+}
