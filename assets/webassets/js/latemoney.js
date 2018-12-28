@@ -69,24 +69,30 @@ function checkTime() {
   for (let i = 0; i < key_var.length; i++) {
     var date2 = new Date();
     var date1 = new Date(
-      `${alldates[i].dd}/${alldates[i].mm}/${alldates[i].yy}`
+      alldates[i].yy,
+      alldates[i].mm - 1,
+      alldates[i].dd,
+      alldates[i].hour,
+      alldates[i].min
     );
     ref.on("value", item => {
       var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-      var diffDays = Math.ceil(timeDiff / (1000 * 300 * 365 * 24));
+      var diffDays = Math.ceil(timeDiff / (1000 * 300 * 365 * 24)) - 1;
       var customerDetails = item.val();
       var timeGiven = customerDetails[key_var[i]].timegiven;
-      if (diffDays >= timeGiven) {
+      if (diffDays >= parseInt(timeGiven)) {
         table.children.item(i).classList.add("tablecol");
         var tableid = document.querySelectorAll(".tablecol");
-        tableid.item(i).style.display = "none";
-        // tableid.item(i).style.backgroundColor = "red";
+        tableid.item(i).style.backgroundColor = "red";
       } else {
         table.children.item(i).classList.add("tablecol");
         var tableid = document.querySelectorAll(".tablecol");
-        // tableid.item(i).style.display = "none";
-        tableid.item(i).style.backgroundColor = "red";
+        tableid.item(i).style.display = "none";
       }
     });
   }
+}
+
+function underDevelop() {
+  swal("This Feature is under Development");
 }

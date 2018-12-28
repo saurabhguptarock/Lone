@@ -69,6 +69,10 @@ if (navigator.onLine) {
       swal("Time given cannot be Empty");
       return;
     }
+    if (etimegiven.value < 1) {
+      swal("Time Given Cannot be Less Than 1");
+      return;
+    }
     var data = {
       name: name.value,
       address: address.value,

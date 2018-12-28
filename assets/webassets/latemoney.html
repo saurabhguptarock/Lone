@@ -38,13 +38,7 @@
         </h1>
         <div id="showafterclick" class="details">Fill It.</div>
         <div class="buttons">
-          <button
-            class="btn btn-success"
-            id="exportpdf"
-            value="Download PDF"
-          >
-            Save as PDF
-          </button>
+          <button class="btn btn-success" onclick="underDevelop()">Save as PDF</button>
         </div>
       </div>
     </div>
@@ -63,44 +57,6 @@
     <script src="./js/dataTables.bootstrap4.min.js"></script>
     <script src="../firebase/firebase.min.js"></script>
     <script src="./js/latemoney.js"></script>
-    <script type="text/javascript">
-      var currentdate = new Date();
-      $(document).ready(function() {
-        $("#exportpdf").click(function() {
-          var pdf = new jsPDF("l", "pt", "ledger");
-          pdf.setFont("helvetica");
-          pdf.setFontSize(18);
-          source = $("#yourTableIdName")[0];
-          specialElementHandlers = {
-            "#bypassme": function(element, renderer) {
-              return true;
-            }
-          };
-          margins = {
-            top: 80,
-            bottom: 60,
-            left: 60,
-            width: 522
-          };
-          pdf.fromHTML(
-            source,
-            margins.left,
-            margins.top,
-            {
-              width: margins.width,
-              elementHandlers: specialElementHandlers
-            },
-
-            function(dispose) {
-              pdf.save(
-                `LateMoney People ${currentdate.getDate()}-${currentdate.getMonth()}-${currentdate.getFullYear()}.pdf`
-              );
-            },
-            margins
-          );
-        });
-      });
-    </script>
     <script>
       if (window.module) module = window.module;
     </script>

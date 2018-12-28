@@ -62,53 +62,56 @@ if (navigator.onLine) {
     });
     checkTime();
   });
-
-  function edit_entry(i) {
-    ipcRenderer.send("showdetails", key_var[i]);
-  }
-  function delete_entry(i) {
-    swal({
-      title: "Are you sure?",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true
-    }).then(willDelete => {
-      if (willDelete) {
-        ref.on("value", item => {
-          var customerDetails = item.val();
-          var name = customerDetails[key_var[i]].name;
-          swal(`${name} has been deleted!`, {
-            icon: "success"
-          }).then(value => {
-            ref.child(key_var[i]).remove();
-            ipcRenderer.send("deletedEntry");
-            location.reload();
-          });
-        });
-      }
-    });
-  }
-  function checkTime() {
-    for (let i = 0; i < key_var.length; i++) {
-      var date2 = new Date();
-      var date1 = new Date(
-        `${alldates[i].dd}/${alldates[i].mm}/${alldates[i].yy}`
-      );
-      ref.on("value", item => {
-        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-        var diffDays = Math.ceil(timeDiff / (1000 * 300 * 365 * 24)) - 11;
-        var customerDetails = item.val();
-        var timeGiven = customerDetails[key_var[i]].timegiven;
-        if (diffDays > timeGiven) {
-          table.children.item(i).classList.add("tablecol");
-          var tableid = document.querySelectorAll(".tablecol");
-          tableid.item(i).style.backgroundColor = "red";
-        }
-      });
-    }
-  }
 } else {
   swal("Internet Must Be Enabled", "Please enable Internet").then(value => {
     location.reload();
   });
+}
+function edit_entry(i) {
+  ipcRenderer.send("showdetails", key_var[i]);
+}
+function delete_entry(i) {
+  swal({
+    title: "Are you sure?",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true
+  }).then(willDelete => {
+    if (willDelete) {
+      ref.on("value", item => {
+        var customerDetails = item.val();
+        var name = customerDetails[key_var[i]].name;
+        swal(`${name} has been deleted!`, {
+          icon: "success"
+        }).then(value => {
+          ref.child(key_var[i]).remove();
+          ipcRenderer.send("deletedEntry");
+          location.reload();
+        });
+      });
+    }
+  });
+}
+function checkTime() {
+  for (let i = 0; i < key_var.length; i++) {
+    var date2 = new Date();
+    var date1 = new Date(
+      alldates[i].yy,
+      alldates[i].mm - 1,
+      alldates[i].dd,
+      alldates[i].hour,
+      alldates[i].min
+    );
+    ref.on("value", item => {
+      var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+      var diffDays = Math.ceil(timeDiff / (1000 * 300 * 365 * 24)) - 1;
+      var customerDetails = item.val();
+      var timeGiven = customerDetails[key_var[i]].timegiven;
+      if (diffDays >= parseInt(timeGiven)) {
+        table.children.item(i).classList.add("tablecol");
+        var tableid = document.querySelectorAll(".tablecol");
+        tableid.item(i).style.backgroundColor = "red";
+      }
+    });
+  }
 }

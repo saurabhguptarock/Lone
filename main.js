@@ -57,6 +57,7 @@ autoUpdater.on("update-downloaded", info => {
   autoUpdater.quitAndInstall();
 });
 
+
 autoUpdater.on("error", error => {
   dialog.showMessageBox({
     title: "Lone",
